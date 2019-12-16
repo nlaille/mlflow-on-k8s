@@ -1,0 +1,5 @@
+{
+    "kube-context": "minikube-context",
+    "kube-job-template-path": "k8s-manifests/mlflow-job-template.yaml",
+    "repository-uri": "jupyter-mlflow-on-k8s-job"
+}

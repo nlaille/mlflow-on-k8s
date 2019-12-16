@@ -1,0 +1,4 @@
+papermill==1.2.1
+mlflow==1.4.0
+boto3
+kubernetes

@@ -1,0 +1,8 @@
+## PostgreSQL user (has superuser privileges if username is `postgres`)
+postgresqlUsername: mlflow
+
+## PostgreSQL password
+postgresqlPassword: mlflow
+
+## Create a database
+postgresqlDatabase: mlflow
