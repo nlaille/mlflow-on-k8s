@@ -1,0 +1,36 @@
+hub:
+  extraConfig:
+    jupyterlab: |
+      c.Spawner.cmd = ['jupyter-labhub']
+  db:
+    type: "sqlite-memory"
+
+proxy:
+  secretToken: '55a814cdf1b3eb163833bf2e6264f3992e7eb0143ececf434f496deb6daf00dc'
+
+singleuser:
+  extraTolerations: []
+  image:
+    name: jupyter/datascience-notebook
+    tag: latest
+  profileList:
+    - display_name: "Minimal environment"
+      description: "To avoid too much bells and whistles: Python."
+      default: true
+    - display_name: "MLFlow tracking environment"
+      description: "Datascience Environment MLFlow setting to track experiments"
+      kubespawner_override:
+        image: jupyter-mlflow-on-k8s-env:latest
+        default_url: "/lab/"
+        environment:
+          MLFLOW_S3_ENDPOINT_URL: http://mlflow-artifacts-minio.default.svc.cluster.local:9000
+          # Should be inject using secrets
+          AWS_ACCESS_KEY_ID: minio
+          AWS_SECRET_ACCESS_KEY: minio123
+          # Should be inject using secrets
+          MLFLOW_TRACKING_URI: postgresql://mlflow:mlflow@mlflow-metadata-postgresql.default.svc.cluster.local:5432/mlflow
+
+ingress:
+  enabled: true
+  hosts:
+    - jupyterhub.minikube
