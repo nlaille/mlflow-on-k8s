@@ -1,4 +1,4 @@
 papermill==1.2.1
-mlflow==1.4.0
+mlflow==2.3.1
 boto3
 kubernetes
